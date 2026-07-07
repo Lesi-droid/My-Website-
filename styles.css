@@ -6,13 +6,13 @@
 
 :root {
   --void: #0a0a0f;
-  --indigo: #4b1e1e;
-  --violet: #dc2626;
-  --lavender: #f87171;
+  --indigo: #1e2a4b;
+  --violet: #2563eb;
+  --lavender: #60a5fa;
   --glass: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(248, 113, 113, 0.2);
-  --text: #fff0f0;
-  --muted: #b09c9c;
+  --glass-border: rgba(96, 165, 250, 0.2);
+  --text: #eef4ff;
+  --muted: #9aa5b8;
 }
 
 html {
@@ -154,7 +154,7 @@ h1 {
 }
 
 .btn-primary:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
   transform: translateY(-2px);
 }
 
@@ -202,7 +202,7 @@ canvas#icosa {
 }
 
 .glass-card:hover {
-  border-color: rgba(248, 113, 113, 0.45);
+  border-color: rgba(96, 165, 250, 0.45);
   transform: translateY(-4px);
 }
 
@@ -286,7 +286,7 @@ h2 {
 }
 
 .skill-card:hover {
-  border-color: rgba(248, 113, 113, 0.5);
+  border-color: rgba(96, 165, 250, 0.5);
   transform: translateY(-3px);
 }
 
@@ -370,14 +370,14 @@ h2 {
 
 .contact-link:hover {
   border-color: var(--lavender);
-  background: rgba(248, 113, 113, 0.08);
+  background: rgba(96, 165, 250, 0.08);
 }
 
 .contact-link-icon {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(220, 38, 38, 0.25);
+  background: rgba(37, 99, 235, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
