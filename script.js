@@ -14,9 +14,9 @@
   window.addEventListener('resize', resize);
 
   const orbs = [
-    { x: 0.15, y: 0.2, r: 320, color: 'rgba(124,58,237,0.12)' },
-    { x: 0.85, y: 0.6, r: 260, color: 'rgba(167,139,250,0.08)' },
-    { x: 0.5,  y: 1.0, r: 300, color: 'rgba(30,27,75,0.5)' },
+    { x: 0.15, y: 0.2, r: 320, color: 'rgba(220,38,38,0.12)' },
+    { x: 0.85, y: 0.6, r: 260, color: 'rgba(248,113,113,0.08)' },
+    { x: 0.5,  y: 1.0, r: 300, color: 'rgba(75,30,30,0.5)' },
   ];
 
   let t = 0;
@@ -51,10 +51,11 @@
   const canvas = document.getElementById('icosa');
   const ctx = canvas.getContext('2d');
   const DPR = window.devicePixelRatio || 1;
-  canvas.width = 340 * DPR;
-  canvas.height = 340 * DPR;
+  const SIZE = 460;
+  canvas.width = SIZE * DPR;
+  canvas.height = SIZE * DPR;
   ctx.scale(DPR, DPR);
-  const W = 340, H = 340;
+  const W = SIZE, H = SIZE;
   const cx = W / 2, cy = H / 2;
 
   const phi = (1 + Math.sqrt(5)) / 2;
@@ -127,7 +128,7 @@
       return r;
     });
 
-    const projected = transformed.map(v => project(v, 130));
+    const projected = transformed.map(v => project(v, 175));
 
     const faceData = faces.map(f => {
       const A = transformed[f[0]], B = transformed[f[1]], C = transformed[f[2]];
@@ -151,10 +152,10 @@
       ctx.closePath();
       if (f.dot > 0) {
         const alpha = Math.min(f.dot * 0.12, 0.1);
-        ctx.fillStyle = `rgba(167,139,250,${alpha})`;
+        ctx.fillStyle = `rgba(248,113,113,${alpha})`;
         ctx.fill();
       }
-      ctx.strokeStyle = `rgba(167,139,250,${0.25 + Math.max(0, f.dot) * 0.5})`;
+      ctx.strokeStyle = `rgba(248,113,113,${0.25 + Math.max(0, f.dot) * 0.5})`;
       ctx.lineWidth = 0.8;
       ctx.stroke();
     });
@@ -163,7 +164,7 @@
       const p = projected[i];
       if (p[2] > -0.1) {
         const g = ctx.createRadialGradient(p[0], p[1], 0, p[0], p[1], 5);
-        g.addColorStop(0, 'rgba(167,139,250,0.9)');
+        g.addColorStop(0, 'rgba(248,113,113,0.9)');
         g.addColorStop(1, 'transparent');
         ctx.beginPath();
         ctx.arc(p[0], p[1], 5, 0, Math.PI * 2);
