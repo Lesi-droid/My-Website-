@@ -1,0 +1,8 @@
+# Disable directory listing
+Options -Indexes
+
+# Block direct browser access to the log files
+<FilesMatch "\.log$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
