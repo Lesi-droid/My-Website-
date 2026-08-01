@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radiance Coaching</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm border-b border-slate-100">
+    <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#home" class="text-xl font-medium text-slate-900 flex items-center gap-2">
+        Radiance <span>🌿</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-slate-600">
+        <a href="#home" class="hover:text-[#090cab] transition-colors">Home</a>
+        <a href="#services" class="hover:text-[#090cab] transition-colors">Services</a>
+        <a href="#about" class="hover:text-[#090cab] transition-colors">About</a>
+        <a href="#contact" class="hover:text-[#090cab] transition-colors">Contact</a>
+        <a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-[#090cab] to-[#1e40af] text-white font-medium hover:opacity-90 transition-opacity">
+          Get Started
+        </a>
+      </div>
+      <button id="menu-btn" class="md:hidden p-2 text-slate-600" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 pb-4 space-y-1">
+      <a href="#home" class="block py-2 text-slate-600 hover:text-[#090cab]">Home</a>
+      <a href="#services" class="block py-2 text-slate-600 hover:text-[#090cab]">Services</a>
+      <a href="#about" class="block py-2 text-slate-600 hover:text-[#090cab]">About</a>
+      <a href="#contact" class="block py-2 text-slate-600 hover:text-[#090cab]">Contact</a>
+      <a href="#contact" class="block mt-2 px-5 py-2 rounded-full bg-gradient-to-r from-[#090cab] to-[#1e40af] text-white text-center font-medium">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 pt-16 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(71,85,105,0.08),transparent)] opacity-60"></div>
+    <div class="container mx-auto px-6 relative z-10 py-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-4rem)]">
+        <div class="space-y-8 animate-on-scroll">
+          <div class="space-y-6">
+            <h1 class="text-4xl lg:text-6xl font-light leading-tight text-slate-900">
+              Welcome to<br>Radiance Coaching 🌿
+            </h1>
+            <p class="text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl">
+              Life can be both beautiful and deeply challenging. Whether you are facing a personal crossroads, walking through grief, or trying to heal from betrayal, you don't have to walk alone.
+            </p>
+          </div>
+          <a href="#contact" class="inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg bg-gradient-to-r from-[#090cab] to-[#1e40af] hover:from-[#0703a8] hover:to-[#1d4ed8] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            Start Your Journey
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="relative block animate-on-scroll">
+          <div class="absolute -inset-4 bg-gradient-to-r from-slate-200 to-slate-300 rounded-3xl blur-2xl opacity-30"></div>
+          <img src="images/anne-kibet.jpeg" alt="Anne Kibet – Radiance Coaching" class="relative w-full object-contain rounded-3xl shadow-2xl">
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-400 animate-bounce">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="py-14 bg-white">
+    <div class="container mx-auto px-6 text-center animate-on-scroll">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <h2 class="text-3xl lg:text-4xl font-light text-slate-900">Our Mission</h2>
+        <p class="text-xl lg:text-2xl text-slate-600 leading-relaxed">
+          ✨ To walk with you toward
+          <span class="text-slate-800 font-medium"> healing</span>,
+          <span class="text-slate-700 font-medium"> wholeness</span>, and
+          <span class="text-slate-600 font-medium"> hope</span>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="py-14 bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-4xl mx-auto animate-on-scroll">
+        <h2 class="text-3xl lg:text-5xl font-light leading-tight text-slate-900 mb-6">Our Story</h2>
+        <p class="text-lg text-slate-600 leading-relaxed">
+          Founded on the belief that everyone deserves compassionate support through life's most challenging moments, Radiance Coaching has been illuminating paths to healing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-10 animate-on-scroll">
+        <h2 class="text-3xl lg:text-4xl font-light text-slate-900 mb-4">Specialized Services</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Coaching that addresses the whole person—your mind, emotions, relationships, body, and spirit—so you can live with greater clarity, resilience, and purpose.
+        </p>
+      </div>
+
+      <!-- Life Coaching -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-16 animate-on-scroll">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-slate-200 to-slate-300 rounded-3xl blur-2xl opacity-20"></div>
+          <img src="images/life-coaching.jpg" alt="Life Coaching" class="relative w-full h-[400px] object-cover rounded-3xl shadow-xl">
+        </div>
+        <div class="space-y-6">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <h3 class="text-2xl lg:text-3xl font-light text-slate-900">Life Coaching</h3>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Gain clarity, confidence, and balance for everyday living. Navigate life transitions, build self-confidence, and rediscover joy and fulfillment.
+          </p>
+          <p class="text-base text-slate-500">
+            Life can sometimes feel overwhelming, confusing, or uncertain. Life coaching gives you the support and tools to move forward with clarity, confidence, and direction.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Clarity:</span><span class="text-slate-600"> Discover what matters most to you and align your actions with your values</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Confidence:</span><span class="text-slate-600"> Build the courage to pursue your goals and dreams</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Practical Tools:</span><span class="text-slate-600"> Learn strategies for stress, time, and energy management</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Whole-Person Growth:</span><span class="text-slate-600"> Strengthen emotional, relational, and spiritual well-being</span></span>
+            </div>
+          </div>
+          <a href="#contact" class="inline-block rounded-full px-8 py-4 bg-gradient-to-r from-[#090cab] to-[#1e40af] hover:from-[#0703a8] hover:to-[#1d4ed8] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+      <!-- Grief & End of Life -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-16 animate-on-scroll">
+        <div class="space-y-6 lg:order-1">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3 class="text-2xl lg:text-3xl font-light text-slate-900">Grief &amp; End of Life</h3>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Compassionate support through loss—because every ending deserves gentle care. We walk with you, with compassion as you process loss and discover hope again.
+          </p>
+          <p class="text-base text-slate-500">
+            Grief may change your story, but it does not end it. Together, we'll find ways to honor the past while creating space for the future. Loss is part of life, but it doesn't make it any less painful. Whether it's death, relationship endings, job loss, or identity shifts, grief touches every area of our lives.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Emotional Support:</span><span class="text-slate-600"> Space to express feelings without judgment</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Practical Guidance:</span><span class="text-slate-600"> Gentle steps for daily living in the midst of grief</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Relational Strength:</span><span class="text-slate-600"> Tools to lean on healthy support systems</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Spiritual Meaning:</span><span class="text-slate-600"> Exploring hope, faith, and purpose even in loss</span></span>
+            </div>
+          </div>
+          <a href="#contact" class="inline-block rounded-full px-8 py-4 bg-gradient-to-r from-[#090cab] to-[#1e40af] hover:from-[#0703a8] hover:to-[#1d4ed8] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            Learn More
+          </a>
+        </div>
+        <div class="relative lg:order-2">
+          <div class="absolute -inset-4 bg-gradient-to-r from-slate-200 to-slate-300 rounded-3xl blur-2xl opacity-20"></div>
+          <img src="https://images.unsplash.com/photo-1603970531020-b0975b156cfe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="Grief & End of Life Coaching" class="relative w-full h-[400px] object-cover rounded-3xl shadow-xl">
+        </div>
+      </div>
+
+      <!-- Betrayal Trauma Coaching -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center animate-on-scroll">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-slate-200 to-slate-300 rounded-3xl blur-2xl opacity-20"></div>
+          <img src="https://images.unsplash.com/photo-1740817747878-1a9d2f89d420?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="Betrayal Trauma Coaching" class="relative w-full h-[400px] object-cover rounded-3xl shadow-xl">
+        </div>
+        <div class="space-y-6">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3 class="text-2xl lg:text-3xl font-light text-slate-900">Betrayal Trauma Coaching</h3>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            APSATS-informed support for healing after infidelity or deception. Rebuild identity, trust, and hope. You are not broken, you are wounded, and wounds can heal.
+          </p>
+          <p class="text-base text-slate-500">
+            When trust is broken through infidelity, deception, or other forms of betrayal, the pain can feel shattering. Betrayal trauma is real, life-impacting trauma.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Safety First:</span><span class="text-slate-600"> Creating physical, emotional, and relational safety</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Stabilization:</span><span class="text-slate-600"> Building resilience to handle triggers and daily challenges</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Healing Identity:</span><span class="text-slate-600"> Rediscovering who you are beyond the betrayal</span></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="text-slate-900 font-medium">Guided Decisions:</span><span class="text-slate-600"> Support in navigating boundaries, trust, reconciliation, or moving forward</span></span>
+            </div>
+          </div>
+          <a href="#contact" class="inline-block rounded-full px-8 py-4 bg-gradient-to-r from-[#090cab] to-[#1e40af] hover:from-[#0703a8] hover:to-[#1d4ed8] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUES -->
+  <section id="values" class="py-16 bg-gradient-to-br from-slate-50 to-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-10 animate-on-scroll">
+        <h2 class="text-3xl lg:text-4xl font-light text-slate-900 mb-4">Our Core Values</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">These principles guide every interaction, decision, and approach in our coaching practice.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Compassion First -->
+        <div class="animate-on-scroll bg-white border border-slate-200 rounded-3xl p-8 text-center hover:shadow-xl transition-all duration-300 flex flex-col items-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <h3 class="text-xl font-medium text-slate-900 mb-3">Compassion First</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">We lead with empathy and understanding, creating a safe space for healing and growth.</p>
+        </div>
+        <!-- Trauma-Informed -->
+        <div class="animate-on-scroll bg-white border border-slate-200 rounded-3xl p-8 text-center hover:shadow-xl transition-all duration-300 flex flex-col items-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3 class="text-xl font-medium text-slate-900 mb-3">Trauma-Informed</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Our approach is grounded in trauma-informed care principles and evidence-based practices.</p>
+        </div>
+        <!-- Holistic Support -->
+        <div class="animate-on-scroll bg-white border border-slate-200 rounded-3xl p-8 text-center hover:shadow-xl transition-all duration-300 flex flex-col items-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </div>
+          <h3 class="text-xl font-medium text-slate-900 mb-3">Holistic Support</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">We address the whole person - mind, body, spirit, and relationships in our coaching.</p>
+        </div>
+        <!-- Continuous Growth -->
+        <div class="animate-on-scroll bg-white border border-slate-200 rounded-3xl p-8 text-center hover:shadow-xl transition-all duration-300 flex flex-col items-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <h3 class="text-xl font-medium text-slate-900 mb-3">Continuous Growth</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">We're committed to ongoing learning and staying current with the latest therapeutic approaches.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE RADIANCE -->
+  <section class="py-16 bg-gradient-to-br from-slate-50 to-white">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8 animate-on-scroll">
+          <h2 class="text-3xl lg:text-4xl font-light text-slate-900">Why Choose Radiance?</h2>
+          <div class="space-y-6 text-lg text-slate-600">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-medium text-slate-900 mb-1">Holistic Support</h4>
+                <p class="text-base">We see and support the whole of you—mind, body, spirit, and relationships.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-medium text-slate-900 mb-1">Specialized Training</h4>
+                <p class="text-base">APSATS-informed care for betrayal trauma and certified expertise across all coaching areas.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-medium text-slate-900 mb-1">Compassionate Approach</h4>
+                <p class="text-base">We walk with you at your pace, not ours, providing safe, non-judgmental support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative hidden lg:block animate-on-scroll">
+          <div class="absolute -inset-6 bg-gradient-to-r from-slate-200 to-slate-300 rounded-3xl blur-3xl opacity-20"></div>
+          <img src="images/anne-kibet.jpeg" alt="Radiance Coaching – Compassionate Approach" class="relative w-full h-[400px] object-cover rounded-3xl shadow-xl">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ME -->
+  <section id="about" class="py-16 bg-gradient-to-br from-slate-50 to-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-10 animate-on-scroll">
+        <h2 class="text-3xl lg:text-4xl font-light text-slate-900 mb-4">About Me</h2>
+        <p class="text-xl text-slate-600 max-w-2xl mx-auto">Experienced, compassionate professional, dedicated to your journey.</p>
+      </div>
+
+      <div class="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
+        <div class="relative inline-block mb-6">
+          <div class="absolute -inset-4 bg-gradient-to-r from-slate-200 to-slate-300 rounded-full blur-2xl opacity-20"></div>
+          <img src="images/anne-kibet.jpeg" alt="Anne Kibet" class="relative w-64 h-64 object-cover rounded-full mx-auto shadow-lg">
+        </div>
+        <h3 class="text-2xl font-medium text-slate-900 mb-2">Anne Kibet</h3>
+        <p class="text-slate-700 font-medium mb-4">Life Coach &amp; Founder</p>
+        <p class="text-slate-600 leading-relaxed">
+          Experienced life coach dedicated to walking alongside you through life's most challenging moments. Anne brings compassion, specialized training, and deep care to every client relationship—helping you move toward healing, wholeness, and hope.
+        </p>
+      </div>
+
+      <!-- Certifications -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto animate-on-scroll">
+        <div class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100">
+          <div class="bg-slate-50 flex items-center justify-center px-6 pt-6 pb-2">
+            <img src="images/cert-life-coach.png" alt="Certified Life Coach" loading="lazy" class="max-w-full max-h-52 object-contain">
+          </div>
+          <div class="p-6 space-y-3">
+            <h3 class="text-xl font-medium text-slate-900">Certified Life Coach</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Anne holds a recognised Life Coach certification, demonstrating she has met rigorous standards in training, supervised practice, and professional ethics.</p>
+          </div>
+        </div>
+        <div class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100">
+          <div class="bg-slate-50 flex items-center justify-center px-6 pt-6 pb-2">
+            <img src="images/cert-grief-coaching.png" alt="Grief and End of Life Coaching" loading="lazy" class="max-w-full max-h-52 object-contain">
+          </div>
+          <div class="p-6 space-y-3">
+            <h3 class="text-xl font-medium text-slate-900">Grief and End of Life Coaching</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Anne is certified in Grief and End of Life Coaching, equipping her to walk alongside clients through loss, bereavement, and life's most tender transitions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-10 animate-on-scroll">
+        <h2 class="text-3xl lg:text-4xl font-light text-slate-900 mb-3">What Our Clients Say</h2>
+        <p class="text-xl text-slate-600 max-w-2xl mx-auto">Real stories from people who have walked the journey toward healing and hope.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Jennifer K. -->
+        <div class="animate-on-scroll bg-slate-50 rounded-3xl p-8 space-y-5 border border-slate-100 hover:shadow-lg transition-all duration-300">
+          <div class="flex gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-slate-600 leading-relaxed italic">&ldquo;Anne helped me navigate the darkest period of my life after discovering my spouse's betrayal. Her APSATS approach gave me the tools to not just survive, but to truly heal and rebuild my sense of self.&rdquo;</p>
+          <div>
+            <p class="font-medium text-slate-900">Jennifer K.</p>
+            <p class="text-sm text-slate-500">Betrayal Trauma Recovery Client</p>
+          </div>
+        </div>
+        <!-- David M. -->
+        <div class="animate-on-scroll bg-slate-50 rounded-3xl p-8 space-y-5 border border-slate-100 hover:shadow-lg transition-all duration-300">
+          <div class="flex gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-slate-600 leading-relaxed italic">&ldquo;The grief coaching I received after losing my father was life-changing. I learned that grief may change your story, but it doesn't end it. I found hope again.&rdquo;</p>
+          <div>
+            <p class="font-medium text-slate-900">David M.</p>
+            <p class="text-sm text-slate-500">Grief &amp; End of Life Client</p>
+          </div>
+        </div>
+        <!-- Maria S. -->
+        <div class="animate-on-scroll bg-slate-50 rounded-3xl p-8 space-y-5 border border-slate-100 hover:shadow-lg transition-all duration-300">
+          <div class="flex gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#090cab"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-slate-600 leading-relaxed italic">&ldquo;Through life coaching, I discovered clarity about my purpose and built the confidence to pursue dreams I never thought possible. The whole-person approach made all the difference.&rdquo;</p>
+          <div>
+            <p class="font-medium text-slate-900">Maria S.</p>
+            <p class="text-sm text-slate-500">Life Coaching Client</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET STARTED CTA -->
+  <section class="py-16 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-8 mb-8 max-w-4xl mx-auto animate-on-scroll">
+        <div class="text-center space-y-4">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#090cab] to-[#1e40af] rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <h3 class="text-lg font-medium text-slate-900">30-Min. Free Consultation</h3>
+          <p class="text-slate-600">
+            This is an opportunity for those interested to contact me for coaching. It is a good way for us to meet, and get you started on your journey.
+          </p>
+        </div>
+        <div class="text-center space-y-4">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#090cab] to-[#1e40af] rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </div>
+          <h3 class="text-lg font-medium text-slate-900">Coaching, Packages &amp; Value</h3>
+          <p class="text-slate-600">
+            We agree on the number of sessions you desire. Customize the package to suit your needs — a Coaching Agreement, Intake Form, Invoice, and first appointment scheduled.
+          </p>
+        </div>
+      </div>
+      <div class="text-center animate-on-scroll">
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-full px-10 py-5 text-lg bg-gradient-to-r from-[#090cab] to-[#1e40af] hover:from-[#0703a8] hover:to-[#1d4ed8] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+          30-Min. Free Consultation
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-8 animate-on-scroll">
+          <h2 class="text-3xl lg:text-4xl font-light text-slate-900 mb-3">Get In Touch</h2>
+          <p class="text-xl text-slate-600">Ready to begin your journey? Reach out below.</p>
+        </div>
+
+        <!-- Contact info -->
+        <div class="grid grid-cols-3 gap-6 mb-8 text-center animate-on-scroll">
+          <div class="space-y-2">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <p class="text-xs text-slate-400 uppercase tracking-wide">Email</p>
+            <a href="mailto:info.radiancecoaching@gmail.com" class="text-slate-700 hover:text-[#090cab] text-xs font-medium break-all">info.radiancecoaching@gmail.com</a>
+          </div>
+          <div class="space-y-2">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 5.86 5.86l1.65-1.65a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <p class="text-xs text-slate-400 uppercase tracking-wide">Phone</p>
+            <a href="tel:+254701208293" class="text-slate-700 hover:text-[#090cab] text-xs font-medium">+254 701 208 293</a>
+          </div>
+          <div class="space-y-2">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <p class="text-xs text-slate-400 uppercase tracking-wide">Location</p>
+            <p class="text-slate-700 text-xs font-medium">Nairobi City, Kenya</p>
+          </div>
+        </div>
+
+        <!-- Contact form -->
+        <form id="contact-form" class="space-y-6 bg-slate-50 rounded-3xl p-8 animate-on-scroll">
+
+          <!-- Step 1: Service selection cards -->
+          <div>
+            <p class="text-sm font-medium text-slate-700 mb-3">What can I help you with?</p>
+            <div class="grid grid-cols-2 gap-3" id="service-cards">
+
+              <!-- Free Consultation -->
+              <button type="button" data-service="30-Min. Free Consultation"
+                class="service-card text-left rounded-2xl border-2 border-slate-200 bg-white p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+                <div class="flex items-start gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-900 leading-snug">Free Consultation</p>
+                    <p class="text-xs text-green-600 font-medium mt-0.5">30 min &bull; Free</p>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Life Coaching -->
+              <button type="button" data-service="Life Coaching"
+                class="service-card text-left rounded-2xl border-2 border-slate-200 bg-white p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+                <div class="flex items-start gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-900 leading-snug">Life Coaching</p>
+                    <p class="text-xs text-slate-500 mt-0.5">KES 500</p>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Grief & End of Life -->
+              <button type="button" data-service="Grief &amp; End of Life Coaching"
+                class="service-card text-left rounded-2xl border-2 border-slate-200 bg-white p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+                <div class="flex items-start gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-900 leading-snug">Grief &amp; End of Life</p>
+                    <p class="text-xs text-slate-500 mt-0.5">KES 500</p>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Betrayal Trauma -->
+              <button type="button" data-service="Betrayal Trauma Coaching"
+                class="service-card text-left rounded-2xl border-2 border-slate-200 bg-white p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+                <div class="flex items-start gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-900 leading-snug">Betrayal Trauma</p>
+                    <p class="text-xs text-slate-500 mt-0.5">KES 500</p>
+                  </div>
+                </div>
+              </button>
+
+            </div>
+            <!-- Hidden input carries the selected service value to the submit handler -->
+            <input type="hidden" name="service" id="service-input" value="30-Min. Free Consultation">
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+              <input type="text" name="firstName" placeholder="Jane" required
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#090cab]/30 focus:border-[#090cab] bg-white transition-colors">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+              <input type="text" name="lastName" placeholder="Doe" required
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#090cab]/30 focus:border-[#090cab] bg-white transition-colors">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+            <input type="email" name="email" placeholder="jane@example.com" required
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#090cab]/30 focus:border-[#090cab] bg-white transition-colors">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">Phone Number <span class="text-slate-400 font-normal">(for M-Pesa)</span></label>
+            <input type="tel" name="phone" placeholder="+254 7XX XXX XXX"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#090cab]/30 focus:border-[#090cab] bg-white transition-colors">
+          </div>
+          <!-- Pricing callout — shown only for paid services -->
+          <div id="service-price-box" class="hidden bg-blue-50 border border-blue-200 rounded-2xl px-5 py-4 flex items-center justify-between">
+            <div>
+              <p class="text-sm font-medium text-slate-700">Session Fee</p>
+              <p class="text-xs text-slate-500 mt-0.5">Secure payment via Pesapal (M-Pesa, card &amp; more)</p>
+            </div>
+            <span id="price-amount" class="text-xl font-semibold text-[#090cab]"></span>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">Message</label>
+            <textarea name="message" rows="4" placeholder="Tell me a little about what you're going through..."
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#090cab]/30 focus:border-[#090cab] bg-white resize-none transition-colors"></textarea>
+          </div>
+          <button id="submit-btn" type="submit"
+            class="w-full rounded-full py-4 bg-gradient-to-r from-[#090cab] to-[#1e40af] hover:from-[#0703a8] hover:to-[#1d4ed8] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
+            <span id="submit-text">Send Message</span>
+          </button>
+          <p id="form-success" class="hidden text-center text-green-600 font-medium">Thank you! Your message has been sent. Anne will be in touch soon.</p>
+          <p id="form-error" class="hidden text-center text-red-600 text-sm"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-300 py-10">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div class="space-y-4">
+          <h3 class="text-xl font-medium text-white">Radiance Coaching 🌿</h3>
+          <p class="text-sm leading-relaxed">
+            Walking with you toward healing, wholeness, and hope. We provide compassionate, specialized coaching that addresses your whole person—mind, emotions, relationships, body, and spirit.
+          </p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <a href="mailto:info.radiancecoaching@gmail.com" class="hover:text-white transition-colors">info.radiancecoaching@gmail.com</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 5.86 5.86l1.65-1.65a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <a href="tel:+254701208293" class="hover:text-white transition-colors">+254 701 208 293</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Nairobi City, Kenya</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-4">Our Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#services" class="hover:text-white transition-colors">Life Coaching</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Grief &amp; End of Life</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Betrayal Trauma Coaching</a></li>
+            <li><span class="text-slate-500">APSATS-Informed Care</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-medium mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">Our Team</a></li>
+            <li><a href="#contact" class="hover:text-white transition-colors">Book Discovery Call</a></li>
+            <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+        <p>© 2025 Radiance Coaching. All rights reserved. Made with ❤️ for healing and hope.</p>
+        <p>APSATS-Certified &bull; Trauma-Informed Care</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'))
+    );
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 80) current = section.id;
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('text-[#090cab]', link.getAttribute('href') === '#' + current);
+      });
+    });
+
+    // Paid service pricing (KES) — update amounts to match actual rates
+    const SERVICE_PRICES = {
+      'Life Coaching':                  500,
+      'Grief & End of Life Coaching':   500,
+      'Betrayal Trauma Coaching':       500,
+    };
+
+    const serviceInput  = document.getElementById('service-input');
+    const priceBox      = document.getElementById('service-price-box');
+    const priceAmount   = document.getElementById('price-amount');
+    const submitBtn     = document.getElementById('submit-btn');
+    const submitText    = document.getElementById('submit-text');
+
+    function updateServiceUI() {
+      const price = SERVICE_PRICES[serviceInput.value];
+      if (price) {
+        priceAmount.textContent = 'KES ' + price.toLocaleString();
+        priceBox.classList.remove('hidden');
+        submitText.textContent = 'Proceed to Payment →';
+      } else {
+        priceBox.classList.add('hidden');
+        submitText.textContent = 'Send Message';
+      }
+    }
+
+    // Service card selection
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('click', () => {
+        // Decode HTML entities from data-service for comparison
+        const raw = card.getAttribute('data-service');
+        const tmp = document.createElement('textarea');
+        tmp.innerHTML = raw;
+        serviceInput.value = tmp.value;
+
+        // Update card styles
+        document.querySelectorAll('.service-card').forEach(c => {
+          c.classList.remove('border-[#090cab]', 'bg-blue-50');
+          c.classList.add('border-slate-200', 'bg-white');
+          c.querySelector('.w-9').classList.remove('bg-blue-100');
+          c.querySelector('.w-9').classList.add('bg-slate-100');
+        });
+        card.classList.add('border-[#090cab]', 'bg-blue-50');
+        card.classList.remove('border-slate-200', 'bg-white');
+        card.querySelector('.w-9').classList.add('bg-blue-100');
+        card.querySelector('.w-9').classList.remove('bg-slate-100');
+
+        updateServiceUI();
+      });
+    });
+
+    // Pre-select first card on load
+    document.querySelector('.service-card').click();
+
+    // Contact / payment form handler
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const errorEl  = document.getElementById('form-error');
+      const successEl = document.getElementById('form-success');
+      errorEl.classList.add('hidden');
+      successEl.classList.add('hidden');
+
+      const data    = new FormData(this);
+      const service = data.get('service');
+      const price   = SERVICE_PRICES[service];
+
+      submitBtn.disabled = true;
+      submitText.textContent = 'Processing…';
+
+      if (price) {
+        // --- Paid service: initiate Pesapal payment ---
+        try {
+          const res = await fetch('pay/initiate.php', { method: 'POST', body: data });
+          const json = await res.json();
+          if (json.redirect_url) {
+            window.location.href = json.redirect_url;
+            return;
+          }
+          throw new Error(json.detail || json.hint || json.error || 'Unexpected response from payment server');
+        } catch (err) {
+          errorEl.textContent = 'Payment error: ' + err.message;
+          errorEl.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitText.textContent = 'Proceed to Payment →';
+        }
+      } else {
+        // --- Free consultation: mailto fallback ---
+        const subject = encodeURIComponent('Coaching Enquiry – ' + service);
+        const body = encodeURIComponent(
+          'Name: '    + data.get('firstName') + ' ' + data.get('lastName') + '\n' +
+          'Email: '   + data.get('email')    + '\n' +
+          'Phone: '   + (data.get('phone') || 'N/A') + '\n' +
+          'Service: ' + service + '\n\n' +
+          data.get('message')
+        );
+        window.location.href = 'mailto:info.radiancecoaching@gmail.com?subject=' + subject + '&body=' + body;
+        successEl.classList.remove('hidden');
+        this.reset();
+        document.querySelector('.service-card').click();
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
