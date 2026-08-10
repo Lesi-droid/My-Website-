@@ -783,20 +783,41 @@
           submitText.textContent = 'Proceed to Payment →';
         }
       } else {
-        // --- Free consultation: mailto fallback ---
-        const subject = encodeURIComponent('Coaching Enquiry – ' + service);
-        const body = encodeURIComponent(
-          'Name: '    + data.get('firstName') + ' ' + data.get('lastName') + '\n' +
-          'Email: '   + data.get('email')    + '\n' +
-          'Phone: '   + (data.get('phone') || 'N/A') + '\n' +
-          'Service: ' + service + '\n\n' +
-          data.get('message')
-        );
-        window.location.href = 'mailto:info.radiancecoaching@gmail.com?subject=' + subject + '&body=' + body;
-        successEl.classList.remove('hidden');
-        this.reset();
-        document.querySelector('.service-card').click();
-        submitBtn.disabled = false;
+        // --- Free consultation: send via Web3Forms so it actually delivers,
+        //     even if the visitor has no email client configured ---
+        try {
+          const payload = {
+            access_key: '3d6ce1b7-9aaf-495e-9dc0-bd75259eebdf',
+            subject: 'Coaching Enquiry – ' + service,
+            from_name: 'Radiance Coaching Website',
+            name: data.get('firstName') + ' ' + data.get('lastName'),
+            email: data.get('email'),
+            phone: data.get('phone') || 'N/A',
+            service: service,
+            message: data.get('message') || '(no message provided)',
+          };
+
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const json = await res.json();
+
+          if (json.success) {
+            successEl.classList.remove('hidden');
+            this.reset();
+            document.querySelector('.service-card').click();
+          } else {
+            throw new Error(json.message || 'Message could not be sent. Please try again.');
+          }
+        } catch (err) {
+          errorEl.textContent = 'Error: ' + err.message;
+          errorEl.classList.remove('hidden');
+        } finally {
+          submitBtn.disabled = false;
+          submitText.textContent = 'Send Message';
+        }
       }
     });
   </script>
