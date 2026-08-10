@@ -467,6 +467,84 @@
     </div>
   </section>
 
+  <!-- BOOK A SESSION (Cal.com scheduling) -->
+  <section id="booking" class="py-16 bg-gradient-to-br from-slate-50 to-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-8 animate-on-scroll">
+          <h2 class="text-3xl lg:text-4xl font-light text-slate-900 mb-3">Book Your Session</h2>
+          <p class="text-xl text-slate-600">Pick a service below, then choose a time that works for you.</p>
+        </div>
+
+        <!-- Booking type tabs -->
+        <div class="grid grid-cols-2 gap-3 mb-6 animate-on-scroll" id="booking-tabs">
+
+          <button type="button" data-cal="free-chat"
+            class="booking-tab text-left rounded-2xl border-2 border-[#090cab] bg-blue-50 p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5 booking-tab-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-slate-900 leading-snug">Free Consultation</p>
+                <p class="text-xs text-green-600 font-medium mt-0.5">30 min &bull; Free</p>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" data-cal="life-coaching-session"
+            class="booking-tab text-left rounded-2xl border-2 border-slate-200 bg-white p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5 booking-tab-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-slate-900 leading-snug">Life Coaching</p>
+                <p class="text-xs text-slate-500 mt-0.5">60 min &bull; KES 5,000</p>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" data-cal="grief-and-end-of-life-coaching"
+            class="booking-tab text-left rounded-2xl border-2 border-slate-200 bg-white p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5 booking-tab-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-slate-900 leading-snug">Grief &amp; End of Life</p>
+                <p class="text-xs text-slate-500 mt-0.5">60 min &bull; KES 5,000</p>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" data-cal="betrayal-trauma-coaching"
+            class="booking-tab text-left rounded-2xl border-2 border-slate-200 bg-white p-4 hover:border-[#090cab] hover:bg-blue-50 transition-all duration-200 focus:outline-none">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5 booking-tab-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-slate-900 leading-snug">Betrayal Trauma</p>
+                <p class="text-xs text-slate-500 mt-0.5">60 min &bull; KES 5,000</p>
+              </div>
+            </div>
+          </button>
+
+        </div>
+
+        <!-- Cal.com inline calendar containers -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden animate-on-scroll" style="min-height:600px;">
+          <div style="width:100%;height:600px;overflow:auto" id="my-cal-inline-free-chat" class="cal-panel"></div>
+          <div style="width:100%;height:600px;overflow:auto" id="my-cal-inline-life-coaching-session" class="cal-panel hidden"></div>
+          <div style="width:100%;height:600px;overflow:auto" id="my-cal-inline-grief-and-end-of-life-coaching" class="cal-panel hidden"></div>
+          <div style="width:100%;height:600px;overflow:auto" id="my-cal-inline-betrayal-trauma-coaching" class="cal-panel hidden"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" class="py-16 bg-white">
     <div class="container mx-auto px-6">
@@ -654,7 +732,7 @@
           <ul class="space-y-2 text-sm">
             <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
             <li><a href="#about" class="hover:text-white transition-colors">Our Team</a></li>
-            <li><a href="#contact" class="hover:text-white transition-colors">Book Discovery Call</a></li>
+            <li><a href="#booking" class="hover:text-white transition-colors">Book a Session</a></li>
             <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
           </ul>
         </div>
@@ -665,6 +743,45 @@
       </div>
     </div>
   </footer>
+
+  <!-- Cal.com embed script (loaded once, shared by all 4 namespaces) -->
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", "free-chat", {origin:"https://app.cal.com"});
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+    Cal.ns["free-chat"]("inline", {
+      elementOrSelector:"#my-cal-inline-free-chat",
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      calLink: "radiance-coaching/free-chat",
+    });
+    Cal.ns["free-chat"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+    Cal("init", "life-coaching-session", {origin:"https://app.cal.com"});
+    Cal.ns["life-coaching-session"]("inline", {
+      elementOrSelector:"#my-cal-inline-life-coaching-session",
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      calLink: "radiance-coaching/life-coaching-session",
+    });
+    Cal.ns["life-coaching-session"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+    Cal("init", "grief-and-end-of-life-coaching", {origin:"https://app.cal.com"});
+    Cal.ns["grief-and-end-of-life-coaching"]("inline", {
+      elementOrSelector:"#my-cal-inline-grief-and-end-of-life-coaching",
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      calLink: "radiance-coaching/grief-and-end-of-life-coaching",
+    });
+    Cal.ns["grief-and-end-of-life-coaching"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+    Cal("init", "betrayal-trauma-coaching", {origin:"https://app.cal.com"});
+    Cal.ns["betrayal-trauma-coaching"]("inline", {
+      elementOrSelector:"#my-cal-inline-betrayal-trauma-coaching",
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      calLink: "radiance-coaching/betrayal-trauma-coaching",
+    });
+    Cal.ns["betrayal-trauma-coaching"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
 
   <script>
     // Mobile menu toggle
@@ -750,6 +867,27 @@
 
     // Pre-select first card on load
     document.querySelector('.service-card').click();
+
+    // Booking tab (Cal.com panel) switching
+    document.querySelectorAll('.booking-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-cal');
+
+        document.querySelectorAll('.booking-tab').forEach(t => {
+          t.classList.remove('border-[#090cab]', 'bg-blue-50');
+          t.classList.add('border-slate-200', 'bg-white');
+          t.querySelector('.booking-tab-icon').classList.remove('bg-blue-100');
+          t.querySelector('.booking-tab-icon').classList.add('bg-slate-100');
+        });
+        tab.classList.add('border-[#090cab]', 'bg-blue-50');
+        tab.classList.remove('border-slate-200', 'bg-white');
+        tab.querySelector('.booking-tab-icon').classList.add('bg-blue-100');
+        tab.querySelector('.booking-tab-icon').classList.remove('bg-slate-100');
+
+        document.querySelectorAll('.cal-panel').forEach(panel => panel.classList.add('hidden'));
+        document.getElementById('my-cal-inline-' + target).classList.remove('hidden');
+      });
+    });
 
     // Contact / payment form handler
     document.getElementById('contact-form').addEventListener('submit', async function(e) {
