@@ -753,34 +753,62 @@
     Cal.config.forwardQueryParams = true;
     Cal.ns["free-chat"]("inline", {
       elementOrSelector:"#my-cal-inline-free-chat",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
       calLink: "radiance-coaching/free-chat",
     });
-    Cal.ns["free-chat"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    Cal.ns["free-chat"]("ui", {
+      "theme":"light",
+      "hideEventTypeDetails":false,
+      "layout":"month_view",
+      "cssVarsPerTheme": {
+        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
+      }
+    });
 
     Cal("init", "life-coaching-session", {origin:"https://app.cal.com"});
     Cal.ns["life-coaching-session"]("inline", {
       elementOrSelector:"#my-cal-inline-life-coaching-session",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
       calLink: "radiance-coaching/life-coaching-session",
     });
-    Cal.ns["life-coaching-session"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    Cal.ns["life-coaching-session"]("ui", {
+      "theme":"light",
+      "hideEventTypeDetails":false,
+      "layout":"month_view",
+      "cssVarsPerTheme": {
+        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
+      }
+    });
 
     Cal("init", "grief-and-end-of-life-coaching", {origin:"https://app.cal.com"});
     Cal.ns["grief-and-end-of-life-coaching"]("inline", {
       elementOrSelector:"#my-cal-inline-grief-and-end-of-life-coaching",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
       calLink: "radiance-coaching/grief-and-end-of-life-coaching",
     });
-    Cal.ns["grief-and-end-of-life-coaching"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    Cal.ns["grief-and-end-of-life-coaching"]("ui", {
+      "theme":"light",
+      "hideEventTypeDetails":false,
+      "layout":"month_view",
+      "cssVarsPerTheme": {
+        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
+      }
+    });
 
     Cal("init", "betrayal-trauma-coaching", {origin:"https://app.cal.com"});
     Cal.ns["betrayal-trauma-coaching"]("inline", {
       elementOrSelector:"#my-cal-inline-betrayal-trauma-coaching",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
       calLink: "radiance-coaching/betrayal-trauma-coaching",
     });
-    Cal.ns["betrayal-trauma-coaching"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    Cal.ns["betrayal-trauma-coaching"]("ui", {
+      "theme":"light",
+      "hideEventTypeDetails":false,
+      "layout":"month_view",
+      "cssVarsPerTheme": {
+        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
+      }
+    });
   </script>
 
   <script>
