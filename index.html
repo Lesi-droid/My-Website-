@@ -6,6 +6,17 @@
   <title>Radiance Coaching</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -20,6 +31,43 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ---------- DARK MODE ---------- */
+    html.dark { color-scheme: dark; }
+    html.dark .bg-white { background-color: #111827 !important; }
+    html.dark .bg-white\/90 { background-color: rgba(11,17,32,.9) !important; }
+    html.dark .bg-slate-50 { background-color: #0f172a !important; }
+    html.dark .bg-slate-100 { background-color: #1e293b !important; }
+    html.dark .bg-blue-50, html.dark .hover\:bg-blue-50:hover { background-color: #172554 !important; }
+    html.dark .bg-blue-100 { background-color: #1e3a8a !important; }
+
+    /* gradient sections / icon boxes / glows */
+    html.dark .from-slate-50 { background-image: none !important; background-color: #0b1120 !important; }
+    html.dark .from-blue-50 { background-image: linear-gradient(to right, #0f172a, #1e1b4b, #1f1029) !important; }
+    html.dark .from-slate-100 { background-image: none !important; background-color: #1e293b !important; }
+    html.dark .from-slate-200 { background-image: linear-gradient(to right, #1e293b, #334155) !important; }
+
+    /* text */
+    html.dark .text-slate-900 { color: #f1f5f9 !important; }
+    html.dark .text-slate-800 { color: #e2e8f0 !important; }
+    html.dark .text-slate-700, html.dark .text-slate-600 { color: #cbd5e1 !important; }
+    html.dark .text-slate-500 { color: #94a3b8 !important; }
+    html.dark .text-\[\#090cab\], html.dark .hover\:text-\[\#090cab\]:hover { color: #818cf8 !important; }
+
+    /* borders */
+    html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #1f2937 !important; }
+    html.dark .hover\:border-\[\#090cab\]:hover, html.dark .border-\[\#090cab\] { border-color: #818cf8 !important; }
+
+    /* form fields */
+    html.dark input { color: #f1f5f9; border-color: #334155 !important; }
+    html.dark ::placeholder { color: #64748b; }
+
+    /* svg icons */
+    html.dark svg[stroke="#475569"] { stroke: #cbd5e1; }
+    html.dark svg[fill="#090cab"] { fill: #818cf8; }
+
+    /* cert badges keep a white backing */
+    html.dark img[src*="cert-"] { background: #fff; border-radius: 12px; padding: 6px; }
   </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -35,15 +83,25 @@
         <a href="#services" class="hover:text-[#090cab] transition-colors">Services</a>
         <a href="#about" class="hover:text-[#090cab] transition-colors">About</a>
         <a href="#contact" class="hover:text-[#090cab] transition-colors">Contact</a>
+        <button type="button" class="theme-toggle p-2 rounded-full text-slate-600 hover:text-[#090cab] transition-colors" aria-label="Toggle dark mode">
+          <svg class="dark:hidden w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+          <svg class="hidden dark:block w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+        </button>
         <a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-[#090cab] to-[#1e40af] text-white font-medium hover:opacity-90 transition-opacity">
           Get Started
         </a>
       </div>
-      <button id="menu-btn" class="md:hidden p-2 text-slate-600" aria-label="Open menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
+      <div class="md:hidden flex items-center gap-1">
+        <button type="button" class="theme-toggle p-2 text-slate-600" aria-label="Toggle dark mode">
+          <svg class="dark:hidden w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+          <svg class="hidden dark:block w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+        </button>
+        <button id="menu-btn" class="p-2 text-slate-600" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 pb-4 space-y-1">
       <a href="#home" class="block py-2 text-slate-600 hover:text-[#090cab]">Home</a>
@@ -671,66 +729,36 @@
   <script type="text/javascript">
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 
+    var __initialCalTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+
     Cal("init", "free-chat", {origin:"https://app.cal.com"});
     Cal.config = Cal.config || {};
     Cal.config.forwardQueryParams = true;
     Cal.ns["free-chat"]("inline", {
       elementOrSelector:"#my-cal-inline-free-chat",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
       calLink: "radiance-coaching/free-chat",
-    });
-    Cal.ns["free-chat"]("ui", {
-      "theme":"light",
-      "hideEventTypeDetails":false,
-      "layout":"month_view",
-      "cssVarsPerTheme": {
-        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
-      }
     });
 
     Cal("init", "life-coaching-session", {origin:"https://app.cal.com"});
     Cal.ns["life-coaching-session"]("inline", {
       elementOrSelector:"#my-cal-inline-life-coaching-session",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
       calLink: "radiance-coaching/life-coaching-session",
-    });
-    Cal.ns["life-coaching-session"]("ui", {
-      "theme":"light",
-      "hideEventTypeDetails":false,
-      "layout":"month_view",
-      "cssVarsPerTheme": {
-        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
-      }
     });
 
     Cal("init", "grief-and-end-of-life-coaching", {origin:"https://app.cal.com"});
     Cal.ns["grief-and-end-of-life-coaching"]("inline", {
       elementOrSelector:"#my-cal-inline-grief-and-end-of-life-coaching",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
       calLink: "radiance-coaching/grief-and-end-of-life-coaching",
-    });
-    Cal.ns["grief-and-end-of-life-coaching"]("ui", {
-      "theme":"light",
-      "hideEventTypeDetails":false,
-      "layout":"month_view",
-      "cssVarsPerTheme": {
-        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
-      }
     });
 
     Cal("init", "betrayal-trauma-coaching", {origin:"https://app.cal.com"});
     Cal.ns["betrayal-trauma-coaching"]("inline", {
       elementOrSelector:"#my-cal-inline-betrayal-trauma-coaching",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
       calLink: "radiance-coaching/betrayal-trauma-coaching",
-    });
-    Cal.ns["betrayal-trauma-coaching"]("ui", {
-      "theme":"light",
-      "hideEventTypeDetails":false,
-      "layout":"month_view",
-      "cssVarsPerTheme": {
-        "light": { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" }
-      }
     });
   </script>
 
@@ -861,6 +889,39 @@
         paymentSubmitText.textContent = 'Proceed to Payment →';
       }
     });
+  </script>
+
+  <!-- Dark mode toggle + Cal.com theme sync -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var calNs = ['free-chat','life-coaching-session','grief-and-end-of-life-coaching','betrayal-trauma-coaching'];
+
+      function setCalTheme(theme) {
+        calNs.forEach(function (ns) {
+          Cal.ns[ns]("ui", {
+            theme: theme,
+            hideEventTypeDetails: false,
+            layout: "month_view",
+            cssVarsPerTheme: {
+              light: { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" },
+              dark:  { "cal-bg": "#111827", "cal-bg-emphasis": "#1e293b", "cal-border": "#334155", "cal-brand": "#4f46e5" }
+            }
+          });
+        });
+      }
+
+      setCalTheme(root.classList.contains('dark') ? 'dark' : 'light');
+
+      document.querySelectorAll('.theme-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          root.classList.toggle('dark');
+          var dark = root.classList.contains('dark');
+          try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+          setCalTheme(dark ? 'dark' : 'light');
+        });
+      });
+    })();
   </script>
 </body>
 </html>
