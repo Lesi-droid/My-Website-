@@ -1,15 +1,18 @@
 <?php
 declare(strict_types=1);
 
+const SITE_URL = 'https://lesi-droid.github.io/My-Website-/'; // change to Anne's final domain
+const CAL_NAMESPACES = ['life-coaching-session', 'grief-and-end-of-life-coaching', 'betrayal-trauma-coaching'];
+
 // Pesapal redirects here with these GET params after payment:
 //   ?OrderTrackingId=xxx&OrderMerchantReference=RC-yyy&OrderNotificationType=zzz
-
-$tracking_id  = htmlspecialchars($_GET['OrderTrackingId']          ?? '', ENT_QUOTES, 'UTF-8');
-$merchant_ref = htmlspecialchars($_GET['OrderMerchantReference']   ?? '', ENT_QUOTES, 'UTF-8');
+$tracking_id  = htmlspecialchars($_GET['OrderTrackingId']        ?? '', ENT_QUOTES, 'UTF-8');
+$merchant_ref = htmlspecialchars($_GET['OrderMerchantReference'] ?? '', ENT_QUOTES, 'UTF-8');
 
 $paid         = false;
 $failed       = false;
 $status_desc  = 'Processing';
+$verified_ref = $merchant_ref;
 
 // Verify actual payment status directly from Pesapal API (do not trust URL params alone)
 if ($tracking_id !== '') {
@@ -18,7 +21,7 @@ if ($tracking_id !== '') {
         $candidate = dirname(__DIR__, $levels) . '/pesapal-config.php';
         if (file_exists($candidate)) { $config_path = $candidate; break; }
     }
-    if ($config_path && file_exists($config_path)) {
+    if ($config_path) {
         require_once $config_path;
 
         $base = (PESAPAL_ENV === 'sandbox')
@@ -60,11 +63,26 @@ if ($tracking_id !== '') {
             $payment_status = strtolower($status_resp['payment_status_description'] ?? '');
             $status_desc    = $status_resp['payment_status_description'] ?? 'Processing';
 
+            // Use the reference Pesapal confirms, not the one in the URL
+            if (!empty($status_resp['merchant_reference'])) {
+                $verified_ref = htmlspecialchars((string) $status_resp['merchant_reference'], ENT_QUOTES, 'UTF-8');
+            }
+
             if ($payment_status === 'completed') {
                 $paid = true;
             } elseif (in_array($payment_status, ['failed', 'invalid'], true)) {
                 $failed = true;
             }
+        }
+    }
+}
+
+// Paid → straight to that service's calendar
+if ($paid) {
+    foreach (CAL_NAMESPACES as $ns) {
+        if (strpos($verified_ref, 'RC-' . $ns . '-') === 0) {
+            header('Location: ' . SITE_URL . '?booked=' . $ns . '#booking');
+            exit;
         }
     }
 }
@@ -87,7 +105,7 @@ if ($tracking_id !== '') {
       </div>
       <h1 class="text-2xl font-medium text-slate-900">Payment Confirmed! 🌿</h1>
       <p class="text-slate-600 leading-relaxed">
-        Thank you for booking with Radiance Coaching. Anne will be in touch within 24 hours to schedule your session.
+        Thank you for booking with Radiance Coaching. We've emailed your confirmation. You can pick your session time on our booking page.
       </p>
       <?php if ($merchant_ref): ?>
         <p class="text-sm text-slate-400">Reference: <?= $merchant_ref ?></p>
@@ -101,7 +119,7 @@ if ($tracking_id !== '') {
       <p class="text-slate-600 leading-relaxed">
         Your payment could not be processed. Please try again or reach out to us directly.
       </p>
-      <a href="https://radiancecoaching.co.ke/#contact"
+      <a href="<?= SITE_URL ?>#contact"
          class="inline-block px-8 py-3 rounded-full border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition-colors">
         Try Again
       </a>
@@ -116,7 +134,7 @@ if ($tracking_id !== '') {
       </p>
     <?php endif; ?>
 
-    <a href="https://radiancecoaching.co.ke"
+    <a href="<?= SITE_URL ?>"
        class="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-[#090cab] to-[#1e40af] text-white font-medium hover:opacity-90 transition-opacity">
       Return to Radiance Coaching
     </a>
