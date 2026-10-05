@@ -1,8 +1,9 @@
-# Disable directory listing
 Options -Indexes
-
-# Block direct browser access to the log files
 <FilesMatch "\.log$">
-    Order allow,deny
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
     Deny from all
+  </IfModule>
 </FilesMatch>
