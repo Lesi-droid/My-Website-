@@ -1,32 +1,32 @@
 <?php
 declare(strict_types=1);
 
-// Pesapal sends GET params to IPN URL:
+// Pesapal calls this URL with:
 //   ?OrderNotificationType=xxx&OrderTrackingId=yyy&OrderMerchantReference=zzz
-//
-// We MUST respond with a specific JSON body to acknowledge receipt,
-// otherwise Pesapal will keep retrying.
+// We verify the status with Pesapal, log it, and reply with the exact JSON Pesapal expects.
 
-$tracking_id  = htmlspecialchars($_GET['OrderTrackingId']          ?? '', ENT_QUOTES, 'UTF-8');
-$merchant_ref = htmlspecialchars($_GET['OrderMerchantReference']   ?? '', ENT_QUOTES, 'UTF-8');
-$notif_type   = htmlspecialchars($_GET['OrderNotificationType']    ?? '', ENT_QUOTES, 'UTF-8');
+function clean(string $v): string
+{
+    return substr(preg_replace('/[^A-Za-z0-9_\-]/', '', $v) ?? '', 0, 100);
+}
+
+$tracking_id  = clean((string) ($_GET['OrderTrackingId']        ?? ''));
+$merchant_ref = clean((string) ($_GET['OrderMerchantReference'] ?? ''));
+$notif_type   = clean((string) ($_GET['OrderNotificationType']  ?? ''));
 
 // Reject malformed requests
-if (!$tracking_id || !$notif_type) {
+if ($tracking_id === '' || $notif_type === '') {
     http_response_code(400);
     exit;
 }
 
-// Load config
+// Load config (lives ABOVE public_html)
 $config_path = null;
 foreach ([2, 1, 3] as $levels) {
     $candidate = dirname(__DIR__, $levels) . '/pesapal-config.php';
     if (file_exists($candidate)) { $config_path = $candidate; break; }
 }
-if ($config_path === null || !file_exists($config_path)) {
-    $config_path = '';
-}
-if ($config_path === '') {
+if ($config_path === null) {
     http_response_code(500);
     exit;
 }
@@ -55,7 +55,7 @@ curl_close($auth_ch);
 $payment_status = 'unknown';
 $amount         = 0;
 
-// --- Verify transaction status ---
+// --- Verify transaction status with Pesapal ---
 if (!empty($auth_resp['token'])) {
     $status_ch = curl_init(
         $base . '/api/Transactions/GetTransactionStatus?orderTrackingId=' . urlencode($tracking_id)
@@ -72,14 +72,14 @@ if (!empty($auth_resp['token'])) {
     $status_resp = json_decode((string) curl_exec($status_ch), true) ?? [];
     curl_close($status_ch);
 
-    $payment_status = strtolower($status_resp['payment_status_description'] ?? 'unknown');
-    $amount         = $status_resp['amount'] ?? 0;
+    $payment_status = clean(strtolower((string) ($status_resp['payment_status_description'] ?? 'unknown')));
+    $amount         = is_numeric($status_resp['amount'] ?? null) ? $status_resp['amount'] : 0;
 }
 
-// --- Write to audit log ---
-$log_dir = __DIR__ . '/logs';
+// --- Audit log, stored ABOVE public_html next to pesapal-config.php (not web-accessible) ---
+$log_dir = dirname($config_path) . '/pesapal-logs';
 if (!is_dir($log_dir)) {
-    mkdir($log_dir, 0750, true);
+    @mkdir($log_dir, 0750, true);
 }
 $log_entry = implode(' | ', [
     date('Y-m-d H:i:s'),
@@ -89,9 +89,9 @@ $log_entry = implode(' | ', [
     $payment_status,
     'KES ' . $amount,
 ]) . PHP_EOL;
-file_put_contents($log_dir . '/ipn.log', $log_entry, FILE_APPEND | LOCK_EX);
+@file_put_contents($log_dir . '/ipn.log', $log_entry, FILE_APPEND | LOCK_EX);
 
-// --- Acknowledge IPN to Pesapal (required — exact format) ---
+// --- Acknowledge IPN to Pesapal (required, exact format) ---
 http_response_code(200);
 header('Content-Type: application/json');
 echo json_encode([
