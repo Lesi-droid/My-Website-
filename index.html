@@ -68,6 +68,11 @@
 
     /* cert badges keep a white backing */
     html.dark img[src*="cert-"] { background: #fff; border-radius: 12px; padding: 6px; }
+
+    /* booking calendar box follows the page theme */
+    #calendar-wrapper { background-color: #ffffff; }
+    html.dark #calendar-wrapper { background-color: #111827 !important; border-color: #334155 !important; }
+    .cal-panel iframe { color-scheme: normal; }
   </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -725,41 +730,60 @@
     </div>
   </footer>
 
-  <!-- Cal.com embed script (loaded once, shared by all 4 namespaces) -->
+  <!-- Cal.com embed script (loaded once, shared by all 4 calendars) -->
   <script type="text/javascript">
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 
-    var __initialCalTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    // The four booking calendars
+    var CAL_ITEMS = [
+      { ns: "free-chat",                      link: "radiance-coaching/free-chat",                      el: "#my-cal-inline-free-chat" },
+      { ns: "life-coaching-session",          link: "radiance-coaching/life-coaching-session",          el: "#my-cal-inline-life-coaching-session" },
+      { ns: "grief-and-end-of-life-coaching", link: "radiance-coaching/grief-and-end-of-life-coaching", el: "#my-cal-inline-grief-and-end-of-life-coaching" },
+      { ns: "betrayal-trauma-coaching",       link: "radiance-coaching/betrayal-trauma-coaching",       el: "#my-cal-inline-betrayal-trauma-coaching" }
+    ];
 
-    Cal("init", "free-chat", {origin:"https://app.cal.com"});
-    Cal.config = Cal.config || {};
-    Cal.config.forwardQueryParams = true;
-    Cal.ns["free-chat"]("inline", {
-      elementOrSelector:"#my-cal-inline-free-chat",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
-      calLink: "radiance-coaching/free-chat",
+    // Calendar colours for each page theme (dark matches the page's dark background)
+    var CAL_VARS = {
+      light: { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" },
+      dark:  { "cal-bg": "#111827", "cal-bg-emphasis": "#1e293b", "cal-border": "#334155", "cal-brand": "#4f46e5" }
+    };
+
+    function currentPageTheme() {
+      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+
+    // (Re)build every calendar with the given theme.
+    // Rebuilding is what makes the calendar reliably switch colour when the toggle is pressed.
+    function mountCalendars(theme) {
+      CAL_ITEMS.forEach(function (it) {
+        try {
+          var box = document.querySelector(it.el);
+          if (!box) return;
+          box.innerHTML = '';
+          Cal.ns[it.ns]("inline", {
+            elementOrSelector: it.el,
+            config: { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": theme },
+            calLink: it.link
+          });
+          Cal.ns[it.ns]("ui", {
+            theme: theme,
+            hideEventTypeDetails: false,
+            layout: "month_view",
+            cssVarsPerTheme: CAL_VARS
+          });
+        } catch (e) {}
+      });
+    }
+
+    CAL_ITEMS.forEach(function (it, i) {
+      Cal("init", it.ns, { origin: "https://app.cal.com" });
+      if (i === 0) {
+        Cal.config = Cal.config || {};
+        Cal.config.forwardQueryParams = true;
+      }
     });
 
-    Cal("init", "life-coaching-session", {origin:"https://app.cal.com"});
-    Cal.ns["life-coaching-session"]("inline", {
-      elementOrSelector:"#my-cal-inline-life-coaching-session",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
-      calLink: "radiance-coaching/life-coaching-session",
-    });
-
-    Cal("init", "grief-and-end-of-life-coaching", {origin:"https://app.cal.com"});
-    Cal.ns["grief-and-end-of-life-coaching"]("inline", {
-      elementOrSelector:"#my-cal-inline-grief-and-end-of-life-coaching",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
-      calLink: "radiance-coaching/grief-and-end-of-life-coaching",
-    });
-
-    Cal("init", "betrayal-trauma-coaching", {origin:"https://app.cal.com"});
-    Cal.ns["betrayal-trauma-coaching"]("inline", {
-      elementOrSelector:"#my-cal-inline-betrayal-trauma-coaching",
-      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":__initialCalTheme},
-      calLink: "radiance-coaching/betrayal-trauma-coaching",
-    });
+    mountCalendars(currentPageTheme());
   </script>
 
   <script>
@@ -876,7 +900,11 @@
       const data = new FormData(this);
       try {
         const res = await fetch('pay/initiate.php', { method: 'POST', body: data });
-        const json = await res.json();
+        const text = await res.text();
+        let json;
+        try { json = JSON.parse(text); }
+        catch (_) { throw new Error('Server returned non-JSON (HTTP ' + res.status + '): ' + text.slice(0, 120)); }
+
         if (json.redirect_url) {
           window.location.href = json.redirect_url;
           return;
@@ -891,34 +919,18 @@
     });
   </script>
 
-  <!-- Dark mode toggle + Cal.com theme sync -->
+  <!-- Dark mode toggle + calendar theme sync -->
   <script>
     (function () {
       var root = document.documentElement;
-      var calNs = ['free-chat','life-coaching-session','grief-and-end-of-life-coaching','betrayal-trauma-coaching'];
-
-      function setCalTheme(theme) {
-        calNs.forEach(function (ns) {
-          Cal.ns[ns]("ui", {
-            theme: theme,
-            hideEventTypeDetails: false,
-            layout: "month_view",
-            cssVarsPerTheme: {
-              light: { "cal-bg": "#ffffff", "cal-bg-emphasis": "#f8fafc", "cal-border": "#e2e8f0", "cal-brand": "#090cab" },
-              dark:  { "cal-bg": "#111827", "cal-bg-emphasis": "#1e293b", "cal-border": "#334155", "cal-brand": "#4f46e5" }
-            }
-          });
-        });
-      }
-
-      setCalTheme(root.classList.contains('dark') ? 'dark' : 'light');
 
       document.querySelectorAll('.theme-toggle').forEach(function (btn) {
         btn.addEventListener('click', function () {
           root.classList.toggle('dark');
           var dark = root.classList.contains('dark');
           try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
-          setCalTheme(dark ? 'dark' : 'light');
+          // Rebuild the calendars in the new theme so they match the page
+          try { mountCalendars(dark ? 'dark' : 'light'); } catch (e) {}
         });
       });
     })();
